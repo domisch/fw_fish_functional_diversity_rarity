@@ -528,3 +528,273 @@ summary(df_sub_VOL_ED)
 write.csv(df_sub_RS_ED, paste0(path_OUT, "/eco_top10_RS_ED.csv"), row.names = F, quote = F)
 write.csv(df_sub_VOL_ED, paste0(path_OUT, "/eco_top10_ED_VOL.csv"), row.names = F, quote = F)
 
+
+
+
+
+
+
+### ---  Histograms of traits  ----
+
+### Body size # body size in cm
+p<-ggplot(df_traits, aes(x=maxtl)) + 
+  geom_histogram(color="black", fill="#ADD8E6", bins=7) #100
+# remove background
+p <- p +  # geom_jitter(size=0.3) +
+  theme(panel.grid.major = element_blank(), # remove grey plot backgound
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        # panel.border = element_blank(),
+        axis.line = element_line(colour = "black"))
+p <- p + 
+  theme(strip.background = element_blank(), # remove title background
+        strip.text.x = element_blank()) +  # remove title
+  theme(axis.title.x = element_text(face="bold", colour="#000000", size=20),
+        axis.text.x  = element_text(angle=0, vjust=0.5, size=20)) +
+  theme(axis.title.y = element_text(face="bold", colour="#000000", size=20),
+        axis.text.y  = element_text(angle=0, vjust=0.5, size=20)) +
+  xlab("Body size (cm)") + ylab("Count")
+p <- p + expand_limits(x = 0)
+p
+
+
+svg(paste0(path, "/trait_histogram_bodysize_7bins.svg"))
+# png(paste0(path, "/trait_histogram_bodysize_7bins.png"))
+plot(p)
+dev.off()
+
+
+
+
+
+### Longevity 
+p<-ggplot(df_traits, aes(x=longevity)) + 
+  geom_histogram(color="black", fill="#ADD8E6", bins=6) # 100
+# remove background
+p <- p +  # geom_jitter(size=0.3) +
+  theme(panel.grid.major = element_blank(), # remove grey plot backgound
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        # panel.border = element_blank(),
+        axis.line = element_line(colour = "black"))
+p <- p + 
+  theme(strip.background = element_blank(), # remove title background
+        strip.text.x = element_blank()) +  # remove title
+  theme(axis.title.x = element_text(face="bold", colour="#000000", size=20),
+        axis.text.x  = element_text(angle=0, vjust=0.5, size=20)) +
+  theme(axis.title.y = element_text(face="bold", colour="#000000", size=20),
+        axis.text.y  = element_text(angle=0, vjust=0.5, size=20)) +
+  xlab("Longevity (years)") + ylab("Count")
+p <- p + expand_limits(x = 0)
+p
+
+
+
+
+svg(paste0(path, "/trait_histogram_longevity_6bins.svg"))
+# png(paste0(path, "/trait_histogram_longevity_6bins.png"))
+plot(p)
+dev.off()
+
+
+
+
+
+
+### Age at maturity 
+p<-ggplot(df_traits, aes(x=matuage)) + 
+  geom_histogram(color="black", fill="#ADD8E6", bins=7) #50
+# remove background
+p <- p +  # geom_jitter(size=0.3) +
+  theme(panel.grid.major = element_blank(), # remove grey plot backgound
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        # panel.border = element_blank(),
+        axis.line = element_line(colour = "black"))
+p <- p + 
+  theme(strip.background = element_blank(), # remove title background
+        strip.text.x = element_blank()) +  # remove title
+  theme(axis.title.x = element_text(face="bold", colour="#000000", size=20),
+        axis.text.x  = element_text(angle=0, vjust=0.5, size=20)) +
+  theme(axis.title.y = element_text(face="bold", colour="#000000", size=20),
+        axis.text.y  = element_text(angle=0, vjust=0.5, size=20)) +
+  xlab("Age at maturity (years)") + ylab("Count")
+p <- p + expand_limits(x = 0)
+p
+
+
+svg(paste0(path, "/trait_histogram_matuage_7bins.svg"))
+# png(paste0(path, "/trait_histogram_matuage_7bins.png"))
+plot(p)
+dev.off()
+
+
+
+
+
+
+### fecundity, Maximum reported fecundity [count]
+p<-ggplot(df_traits, aes(x=fecundity)) +
+  geom_histogram(color="black", fill="#ADD8E6", bins=7) # 50
+# remove background
+p <- p +  # geom_jitter(size=0.3) +
+  theme(panel.grid.major = element_blank(), # remove grey plot backgound
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        # panel.border = element_blank(),
+        axis.line = element_line(colour = "black"))
+p <- p +
+  theme(strip.background = element_blank(), # remove title background
+        strip.text.x = element_blank()) +  # remove title
+  theme(axis.title.x = element_text(face="bold", colour="#000000", size=20),
+        axis.text.x  = element_text(angle=0, vjust=0.5, size=20)) +
+  theme(axis.title.y = element_text(face="bold", colour="#000000", size=20),
+        axis.text.y  = element_text(angle=0, vjust=0.5, size=20)) +
+  xlab("log Maximum reported fecundity [count]") + ylab("Count")
+p <- p + expand_limits(x = 0)
+p
+# 
+# svg(paste0(path, "/trait_histogram_matuage_7bins.svg"))
+# # png(paste0(path, "/trait_histogram_matuage_7bins.png"))
+# plot(p)
+# dev.off()
+
+
+
+
+### fecundity, Maximum reported fecundity [count] (LOG)
+p<-ggplot(df_traits, aes(x=log(fecundity+1))) + 
+  geom_histogram(color="black", fill="#ADD8E6", bins=9) #50
+# remove background
+p <- p +  # geom_jitter(size=0.3) +
+  theme(panel.grid.major = element_blank(), # remove grey plot backgound
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        # panel.border = element_blank(),
+        axis.line = element_line(colour = "black"))
+p <- p + 
+  theme(strip.background = element_blank(), # remove title background
+        strip.text.x = element_blank()) +  # remove title
+  theme(axis.title.x = element_text(face="bold", colour="#000000", size=20),
+        axis.text.x  = element_text(angle=0, vjust=0.5, size=20)) +
+  theme(axis.title.y = element_text(face="bold", colour="#000000", size=20),
+        axis.text.y  = element_text(angle=0, vjust=0.5, size=20)) +
+  xlab("log Maximum reported fecundity [count]") + ylab("Count")
+p <- p + expand_limits(x = 0)
+p
+
+
+svg(paste0(path, "/trait_histogram_fecundity_9bins.svg"))
+# png(paste0(path, "/trait_histogram_fecundity_9bins.png"))
+plot(p)
+dev.off()
+
+
+
+
+
+### length of the spawning season [continuous]
+
+max(df_traits$season)
+
+p<-ggplot(df_traits, aes(x=season)) +
+  geom_histogram(color="black", fill="#ADD8E6", bins=12)
+# remove background
+p <- p +  # geom_jitter(size=0.3) +
+  theme(panel.grid.major = element_blank(), # remove grey plot backgound
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        # panel.border = element_blank(),
+        axis.line = element_line(colour = "black"))
+p <- p +
+  theme(strip.background = element_blank(), # remove title background
+        strip.text.x = element_blank()) +  # remove title
+  theme(axis.title.x = element_text(face="bold", colour="#000000", size=20),
+        axis.text.x  = element_text(angle=0, vjust=0.5, size=20)) +
+  theme(axis.title.y = element_text(face="bold", colour="#000000", size=20),
+        axis.text.y  = element_text(angle=0, vjust=0.5, size=20)) +
+  xlab("length of the spawning season") + ylab("Count")
+p <- p + expand_limits(x = 0)
+p
+
+
+svg(paste0(path, "/trait_histogram_season_12bins.svg"))
+# png(paste0(path, "/trait_histogram_season_12bins.png"))
+plot(p)
+dev.off()
+
+
+
+
+
+
+
+
+### serial spawner
+str(df_traits$serial)
+
+p<-ggplot(df_traits, aes(x=serial)) + 
+  geom_bar(color="black", fill="#ADD8E6")
+# remove background
+p <- p +  # geom_jitter(size=0.3) +
+  theme(panel.grid.major = element_blank(), # remove grey plot backgound
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        # panel.border = element_blank(),
+        axis.line = element_line(colour = "black"))
+p <- p + 
+  theme(strip.background = element_blank(), # remove title background
+        strip.text.x = element_blank()) +  # remove title
+  theme(axis.title.x = element_text(face="bold", colour="#000000", size=20),
+        axis.text.x  = element_text(angle=0, vjust=0.5, size=20)) +
+  theme(axis.title.y = element_text(face="bold", colour="#000000", size=20),
+        axis.text.y  = element_text(angle=0, vjust=0.5, size=20)) +
+  xlab("non-serial     |     serial") + ylab("Count")
+p <- p + expand_limits(x = 0)
+p
+
+
+svg(paste0(path, "/trait_histogram_serial_2bins.svg"))
+# png(paste0(path, "/trait_histogram_serial_2bins.png"))
+plot(p)
+dev.off()
+
+
+
+
+### potanadr, Potamodromous/anadromous, sign. movement regarding spawning 
+summary(df_traits$potanadr)
+head(df_traits$potanadr)
+potan: TRUE / FALSE (TRUE= any long-distance migration)
+# df_traits$potanadr_char <- ifelse(df_traits$potanadr==0, "No long-distance migration", "Potamodromous/anadromous")
+
+p<-ggplot(df_traits, aes(x=potanadr)) + 
+  geom_bar(color="black", fill="#ADD8E6")
+# remove background
+p <- p +  # geom_jitter(size=0.3) +
+  theme(panel.grid.major = element_blank(), # remove grey plot backgound
+        panel.grid.minor = element_blank(),
+        panel.background = element_blank(),
+        # panel.border = element_blank(),
+        axis.line = element_line(colour = "black"))
+p <- p + 
+  theme(strip.background = element_blank(), # remove title background
+        strip.text.x = element_blank()) +  # remove title
+  theme(axis.title.x = element_text(face="bold", colour="#000000", size=20),
+        axis.text.x  = element_text(angle=0, vjust=0.5, size=20)) +
+  theme(axis.title.y = element_text(face="bold", colour="#000000", size=20),
+        axis.text.y  = element_text(angle=0, vjust=0.5, size=20)) +
+  xlab("non-migratory     |     migratory") + ylab("Count")
+p <- p + expand_limits(x = 0)
+p
+
+
+svg(paste0(path, "/trait_histogram_potanadr_2bins.svg"))
+# png(paste0(path, "/trait_histogram_potanadr_2bins.png"))
+plot(p)
+dev.off()
+
+
+
+
+
